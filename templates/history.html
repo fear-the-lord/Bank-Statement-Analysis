@@ -1,0 +1,26 @@
+<!-- templates/history.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History - Bank Statement Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Analysis History</h1>
+    <a href="{{ url_for('index') }}">← Back to Upload</a>
+
+    {% if histories %}
+        <ul>
+            {% for item in histories %}
+                <li>
+                    <strong>{{ item.analysis_id }}</strong> - Uploaded on {{ item.created_at }}
+                    <a href="{{ url_for('dashboard', analysis_id=item.analysis_id) }}">View</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No previous analysis found.</p>
+    {% endif %}
+</body>
+</html>
